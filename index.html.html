@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>محاكاة مكالمة احتيال - توعوي</title>
+<style>
+:root{color-scheme:dark;--g:#34c759;--r:#ff3b30;--t:#fff;--m:rgba(255,255,255,.6)}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#000;font-family:-apple-system,"SF Arabic","SF Pro Display",Tahoma,sans-serif;color:var(--t)}
+body{display:flex;justify-content:center;align-items:center}
+.phone{position:relative;width:100%;max-width:430px;height:100%;max-height:932px;overflow:hidden;background:#000;
+background-image:radial-gradient(circle at 20% 10%,#3a2f6b 0,transparent 55%),radial-gradient(circle at 80% 90%,#0e5a52 0,transparent 55%),linear-gradient(#141420,#0a0a12)}
+@media(min-width:500px){.phone{border-radius:56px;border:10px solid #1b1b1d;box-shadow:0 0 0 2px #444,0 30px 80px #000a}}
+.ic{display:flex;align-items:center;gap:5px}.g5{font-size:15px;font-weight:600}
+.sms{position:absolute;top:58px;left:10px;right:10px;z-index:12;background:rgba(60,60,64,.92);backdrop-filter:blur(20px);border-radius:22px;padding:12px 14px;display:flex;gap:10px;align-items:center;transform:translateY(calc(-100% - 90px));visibility:hidden;opacity:0;transition:transform .45s ease,opacity .3s,visibility 0s .45s}.sms.on{transform:none;visibility:visible;opacity:1;transition:transform .45s ease,opacity .2s}.sms i{width:34px;height:34px;border-radius:8px;background:#34c759;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:19px;flex:none}.sms b{font-size:14px;display:block}.sms span{font-size:14px;color:#ddd;line-height:1.5}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;background:#000;border-radius:20px;z-index:9}
+.sb{position:absolute;top:0;left:0;right:0;height:54px;padding:16px 30px 0;display:flex;justify-content:space-between;font-size:16px;font-weight:600;direction:ltr;z-index:8}
+.scr{position:absolute;inset:0;padding:calc(70px + env(safe-area-inset-top,0px)) 24px calc(30px + env(safe-area-inset-bottom,0px));display:none;flex-direction:column;align-items:center}
+.scr.on{display:flex}
+h1{font-size:34px;font-weight:600;margin-top:24px;text-align:center}
+.sub{color:var(--m);font-size:17px;margin-top:6px;text-align:center}
+.av{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#0a7a4b,#14b37d);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:700;margin-top:18px}
+.spacer{flex:1}
+.row{display:flex;direction:ltr;justify-content:space-between;width:100%;padding:0 22px}
+.cb{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:14px;border:0;background:none;color:#fff;cursor:pointer}
+.circ{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
+.circ.r{background:var(--r)}.circ.g{background:var(--g)}
+.circ.r svg{transform:rotate(135deg)}
+.top2{display:flex;direction:ltr;justify-content:space-between;width:100%;padding:0 30px;margin-bottom:46px;color:#fff;font-size:13px}
+.top2 div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.top2 i{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:20px}
+.pulse{animation:p 1.2s infinite}@keyframes p{50%{transform:scale(1.07)}}
+.btn{background:#fff;color:#000;border:0;border-radius:16px;padding:16px 28px;font-size:18px;font-weight:600;cursor:pointer;font-family:inherit}
+.note{color:var(--m);font-size:13px;margin-top:14px;text-align:center;line-height:1.7}
+.tm{font-variant-numeric:tabular-nums;color:var(--m);font-size:17px;margin-top:4px;direction:ltr}
+#log{flex:1;width:100%;overflow-y:auto;margin:12px 0;display:flex;flex-direction:column;gap:10px;padding:4px}
+.b{max-width:88%;padding:12px 15px;border-radius:18px;font-size:18px;line-height:1.75}
+.b.s{background:rgba(255,255,255,.14);align-self:flex-start;border-top-right-radius:4px}
+.b.u{background:#0a84ff;align-self:flex-end;border-top-left-radius:4px}
+.b small{display:block;font-size:12px;color:var(--m);margin-bottom:2px}
+.cur::after{content:"▍";opacity:.6;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+#ch{width:100%;display:flex;flex-direction:column;gap:8px;min-height:10px}
+.opt{background:rgba(255,255,255,.95);color:#111;border:0;border-radius:14px;padding:13px 14px;font-size:16.5px;font-family:inherit;text-align:right;cursor:pointer;line-height:1.5}
+.opt:active{background:#d6d6d6}
+.end{justify-content:center;text-align:center;gap:14px}
+.end .big{font-size:64px}.end h2{font-size:26px}
+.end p{color:#ddd;line-height:1.9;font-size:16.5px}
+.tips{background:rgba(255,255,255,.1);border-radius:16px;padding:14px 18px;text-align:right;width:100%;font-size:15.5px;line-height:1.9}
+</style></head><body>
+<div class="phone">
+<div class="island"></div>
+<div class="sms" id="sms"><i>💬</i><div><b>رسالة - الأهلي</b><span id="smst"></span></div></div>
+<div class="sb"><span id="clk">9:41</span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><b class="g5">5G</b><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="#fff" stroke-opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.5" fill="#fff"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="#fff" fill-opacity=".45"/></svg></span></div>
+
+<section class="scr on" id="start" style="justify-content:center;gap:12px;text-align:center">
+<div style="font-size:60px">📞</div>
+<h1 style="margin:0">محاكاة مكالمة احتيال</h1>
+<p class="sub">تجربة توعوية: ستتلقى اتصالًا من «موظف بنك» مزيّف. اختر ردودك بحكمة.</p>
+<p class="note">هذه محاكاة تعليمية بالكامل، وليست مكالمة حقيقية.<br>ارفع صوت جهازك لسماع المكالمة.</p>
+<button class="btn" id="go" style="margin-top:20px">ابدأ المحاكاة</button>
+</section>
+
+<section class="scr" id="inc">
+<div class="top2"><div><i>⏰</i>ذكّرني</div><div><i>💬</i>رسالة</div></div>
+<div class="av pulse" style="background:linear-gradient(135deg,#6b7280,#9ca3af)">👤</div>
+<h1>غير معروف</h1>
+<div class="sub">جوّال…</div>
+<div class="spacer"></div>
+<div class="row">
+<button class="cb" id="dec"><span class="circ r"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.25 1z"/></svg></span>رفض</button>
+<button class="cb" id="acc"><span class="circ g pulse"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.25 1z"/></svg></span>قبول</button>
+</div></section>
+
+<section class="scr" id="call" style="padding-top:62px">
+<h1 style="font-size:26px;margin-top:6px">غير معروف</h1>
+<div class="tm" id="tm">00:00</div>
+<div id="log"></div>
+<div id="ch"></div>
+<div class="row" style="margin-top:12px;justify-content:center"><button class="cb" id="hang"><span class="circ r" style="width:60px;height:60px"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.3.2 2.5.6 3.6a1 1 0 01-.25 1z"/></svg></span></button></div>
+</section>
+
+<section class="scr end" id="fin">
+<div class="big" id="fi"></div><h2 id="ft"></h2><p id="fp"></p>
+<div class="tips" id="fl"></div>
+<button class="btn" id="again">أعد المحاكاة</button>
+</section>
+</div>
+
+<script>
+// شجرة الحوار: كل عقدة تؤدي إلى عقدة جديدة دائمًا (لا حلقات ولا تكرار)
+const N={
+start:{s:"السلام عليكم. معك خالد من إدارة مكافحة الاحتيال في البنك الأهلي. رصدنا عملية مشبوهة على بطاقتك بمبلغ أربعة آلاف وتسعمائة ريال. هل قمت بها؟",
+ c:[["لا، لم أقم بأي عملية","deny"],["من أنت؟ وكيف أتأكد أنك من البنك؟","verify"],["سأغلق وأتصل بالبنك على رقمه الرسمي","hang"]]},
+deny:{t:"وصلك",s:"الحمد لله أنك نبهتنا. لقد وصلك الآن رمز تحقق. اقرأه علي لإيقاف العملية.",
+ c:[["وصلني الرمز، تفضل","otp"],["أعطني رقمك الوظيفي لأتصل بالبنك","callback"],["البنك لا يطلب الرموز هاتفيًا، سأنهي المكالمة","hang"]]},
+verify:{s:"رقمي الوظيفي سبعة اثنان أربعة ثمانية. الوقت ضيق، والمبلغ قيد التحويل. أحتاج أرقام بطاقتك.",
+ c:[["حسنًا، سأقرؤها لك","card"],["لماذا تستعجلني؟","pressure"],["هذا مريب، سأغلق الآن","hang"]]},
+pressure:{s:"الاستعجال لمصلحتك. وإلا سيُجمَّد حسابك وتتحمل المسؤولية.",
+ c:[["خفت، سأعطيك الرمز","otp"],["هذا تهديد، وأنا سأغلق","hang"]]},
+callback:{t:"وصلك",s:"الخط الرسمي مشغول الآن. أكمل معي. لقد وصلك الرمز للتو.",
+ c:[["حسنًا، وصلني الرمز","otp"],["سأتصل بالرقم المطبوع خلف بطاقتي","hang"]]},
+card:{t:"وصلك",s:"شكرًا لك. لقد وصلك الآن رمز التحقق. اقرأه علي ببطء.",
+ c:[["أقرأ له الرمز: {C}","L_card"],["انتظر، هذا احتيال! سأغلق","hang"]]},
+otp:{t:"وصلك",s:"ممتاز. لقد وصلك الرمز الآن. اقرأه علي.",s2:"ممتاز. هذا الرمز لإلغاء العملية. اقرأه علي الآن.",
+ c:[["أقرأ له الرمز: {C}","L_otp"],["الرسالة تقول: لا تشاركه مع أحد","otp2"],["سأنهي المكالمة","hang"]]},
+otp2:{s:"تلك رسالة عامة. أنا موظف رسمي. ثوانٍ فقط.",
+ c:[["أقرأ له الرمز: {C}","L_otp"],["لا، سأغلق وأبلّغ البنك","hang"]]},
+hang:{s:"كما تشاء، لكنك ستتحمل العواقب.",end:"W"},
+L_otp:{s:"شكرًا لتعاونك. تم الاستلام.",end:"L",why:"أعطيت رمز التحقق (OTP) للمحتال، وبه يستطيع تأكيد عمليات سحب وتحويل من حسابك."},
+L_card:{s:"شكرًا لتعاونك. تم الاستلام.",end:"L",why:"أعطيت بيانات بطاقتك ورمز التحقق للمحتال، وبهما يمكنه السحب من حسابك فورًا."}
+};
+const $=id=>document.getElementById(id);
+let CODE="0000",smsShown=false,smsT=null,tok=0,node=null,secs=0,tick=null,ring=null,ac=null,voice=null,hasSpeech='speechSynthesis' in window;
+function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===id))}
+function clock(){const d=new Date();$('clk').textContent=d.getHours()%12||12+':'+String(d.getMinutes()).padStart(2,'0');$('clk').textContent=(d.getHours()%12||12)+':'+String(d.getMinutes()).padStart(2,'0')}
+clock();setInterval(clock,20000);
+function pickVoice(){if(!hasSpeech)return;const v=speechSynthesis.getVoices();voice=v.find(x=>/^ar[-_]SA/i.test(x.lang))||v.find(x=>/^ar/i.test(x.lang))||null}
+if(hasSpeech){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+// نغمة تشبه "Reflection" في الآيفون (مارimba)
+let bus=null;
+function mar(f,t){try{if(!bus)return;const n=ac.currentTime+t;[[1,.28,.55],[4,.07,.18]].forEach(([m,v,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f*m;o.connect(g);g.connect(bus);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.008);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.start(n);o.stop(n+d+.05)})}catch(e){}}
+const MEL=[1319,1175,988,1175,1319,1568,1319,1175,988,880,988,1175,1319,1175,988,0,1319,1175,988,1175,1319,1568,1760,1568,1319,1175,1319,988];
+function ringOn(){ringOff();try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();bus=ac.createGain();bus.connect(ac.destination)}catch(e){}
+ const r=()=>{if(!ac)return;MEL.forEach((f,i)=>{if(f)mar(f,i*.15)});try{navigator.vibrate&&navigator.vibrate([400,200,400])}catch(e){}};
+ r();ring=setInterval(r,MEL.length*150+700)}
+function ringOff(){clearInterval(ring);ring=null;if(bus){try{bus.gain.cancelScheduledValues(0);bus.gain.value=0;bus.disconnect()}catch(e){}bus=null}try{navigator.vibrate&&navigator.vibrate(0)}catch(e){}}
+// الكلام مع مزامنة النص كلمة بكلمة
+function say(text,el,done,trig){
+ const my=tok,sents=text.split(/(?<=[.؟!])\s+/).filter(Boolean),words=[],offs=[];
+ sents.forEach(s=>{offs.push(words.length);words.push(...s.split(/\s+/).filter(Boolean))});
+ let shown=0,fin=false,viaB=false,ft=null,wd=null,td=false;
+ const ti=trig?words.findIndex(w=>w.includes(trig)):-1;
+ const log=$('log');
+ const render=n=>{shown=n;el.textContent=words.slice(0,n).join(' ');log.scrollTop=log.scrollHeight;if(ti>=0&&!td&&n>ti){td=true;showSms()}};
+ const finish=()=>{if(fin||my!==tok)return;fin=true;clearInterval(ft);clearTimeout(wd);el.classList.remove('cur');render(words.length);setTimeout(()=>{if(my===tok)done()},450)};
+ el.classList.add('cur');render(0);
+ const useVoice=hasSpeech&&voice;
+ ft=setInterval(()=>{if(my!==tok){clearInterval(ft);return}if(viaB)return;if(shown<words.length)render(shown+1);else if(!useVoice)finish()},270);
+ wd=setTimeout(finish,words.length*600+4000);
+ if(!useVoice)return;
+ try{speechSynthesis.cancel()}catch(e){}
+ sents.forEach((s,i)=>{
+  const u=new SpeechSynthesisUtterance(s);u.voice=voice;u.lang=voice.lang||'ar-SA';u.rate=1.55;u.pitch=.95;
+  const starts=[];let p=0;s.split(/\s+/).filter(Boolean).forEach(w=>{const k=s.indexOf(w,p);starts.push(k);p=k+w.length});
+  u.onboundary=e=>{if(my!==tok||fin)return;if(e.name&&e.name!=='word')return;viaB=true;let k=0;for(let j=0;j<starts.length;j++)if(starts[j]<=e.charIndex)k=j;render(Math.max(shown,offs[i]+k+1))};
+  if(i===sents.length-1){u.onend=finish;u.onerror=finish}
+  speechSynthesis.speak(u)})
+}
+function addBubble(cls,txt,who){const b=document.createElement('div');b.className='b '+cls;if(who){const s=document.createElement('small');s.textContent=who;b.appendChild(s)}const t=document.createElement('span');t.textContent=txt;b.appendChild(t);$('log').appendChild(b);$('log').scrollTop=1e5;return t}
+function showSms(){if(smsShown)return;smsShown=true;$('smst').textContent='رمز التحقق: '+CODE+'. لا تشاركه مع أحد.';$('sms').classList.add('on');try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}clearTimeout(smsT);smsT=setTimeout(()=>$('sms').classList.remove('on'),7000)}
+function go(id){
+ node=N[id];$('ch').innerHTML='';
+ const el=addBubble('s','', 'المتصل');
+ const useS2=smsShown&&node.s2,trig=(!smsShown&&node.t)?node.t:null;
+ say(useS2?node.s2:node.s,el,()=>{
+  if(node.end){setTimeout(()=>finish(node.end,node.why),700);return}
+  node.c.forEach(([t,nx])=>{const b=document.createElement('button');b.className='opt';const T=t.replace('{C}',CODE.split('').join(' '));b.textContent=T;
+   b.onclick=()=>{if(b.dataset.d)return;$('ch').innerHTML='';addBubble('u',T);setTimeout(()=>go(nx),650)};$('ch').appendChild(b)});
+  $('log').scrollTop=1e5},trig)
+}
+function finish(kind,why){
+ tok++;try{hasSpeech&&speechSynthesis.cancel()}catch(e){}clearInterval(tick);ringOff();
+ const L=kind==='L',R=kind==='R';
+ $('fi').textContent=L?'⚠️':'✅';
+ $('ft').textContent=L?'وقعت ضحية الاحتيال (محاكاة)':R?'أحسنت! رفضت المكالمة':'أحسنت! أنهيت المكالمة';
+ $('fp').textContent=L?why:R?'أفضل خيار عند الشك هو عدم الرد، ثم الاتصال بالبنك من الرقم الرسمي.':'أنهيت المكالمة قبل أن تعطي أي معلومة، وهذا التصرف الصحيح.';
+ $('fl').innerHTML='<b>تذكّر دائمًا:</b><br>• البنك لا يطلب رمز التحقق أو بيانات البطاقة هاتفيًا أبدًا.<br>• الاستعجال والتهديد بتجميد الحساب أسلوب احتيال معروف.<br>• أغلق المكالمة واتصل بالبنك من الرقم المطبوع على بطاقتك.<br>• لا تثق باسم المتصل أو الرقم الوظيفي، فكلاها قابل للتزوير.';
+ show('fin')}
+$('go').onclick=()=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}
+ if(hasSpeech){try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(e){}pickVoice()}
+ show('inc');ringOn()};
+$('dec').onclick=()=>{finish('R')};
+$('acc').onclick=()=>{ringOff();CODE=String(1000+Math.floor(Math.random()*9000));smsShown=false;$('sms').classList.remove('on');secs=0;$('tm').textContent='00:00';$('log').innerHTML='';$('ch').innerHTML='';show('call');
+ clearInterval(tick);tick=setInterval(()=>{secs++;$('tm').textContent=String(secs/60|0).padStart(2,'0')+':'+String(secs%60).padStart(2,'0')},1000);
+ tok++;go('start')};
+$('hang').onclick=()=>finish('W');
+$('again').onclick=()=>{tok++;$('sms').classList.remove('on');show('inc');ringOn()};
+</script></body></html>
